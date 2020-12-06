@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Shopping Cart</title>
+  </head>
+  <body>
+    <header>
+      <h1>Your cart</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Add items to cart</h2>
+
+        <section>
+          <h3>Available fruit</h3>
+          <ul>
+            <li>
+              Apple ($0.40)
+              <button type="button" class="add-to-cart" data-product="Apple" data-price="0.40">
+                Add +1 to cart
+              </button>
+            </li>
+            <li>
+              Banana ($0.20)
+              <button type="button" class="add-to-cart" data-product="Banana" data-price="0.20">
+                Add +1 to cart
+              </button>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <section>
+        <h2>Items in cart</h2>
+
+        <p>There are <span id="cart-count">0</span> items in your cart.</p>
+        <div>Total: $<span id="cart-total">0</span></div>
+      </section>
+    </main>
+
+    <script>
+      function initializeCartWithCount() {
+        // Variable declaration format:
+        //   let/var/const nameOfVariable = valueOfVariable
+        //
+        // Notes:
+        // - let/var = Variable can be reassigned
+        //   Example:
+        //     let myBackpack = 'blue jansport';
+        //
+        //     myBackpack = 'red gucci';
+        // - const = Variable cannot be reassigned, but properties of it can be modifed
+        //   Example:
+        //     const myBackpack = { color: 'blue', brand: 'jansport' };
+        //
+        //     myBackpack.color = 'red'
+        //     myBackpack.brand = 'jansport'
+        // - Use camel-case when naming your variables: first letter of each word is capitalized
+        let itemsInCartCount = 0; // number data type
+
+        // Array is a list of values. Here, we're saying "turn the list of HTML button
+        // elements into a list of values we can work with in JavaScript:"
+        Array.from(document.querySelectorAll(".add-to-cart")).forEach(
+          // Named declaration format:
+          //  function nameOfFunction(nameOfInputs) { makeSomethingHappen }
+          // Note: Both of these are valid ways to write a function:
+          //   () => { makeSomethingHappen }
+          //   function() { makeSomethingHappen }
+          function makeButtonClickable(button) {
+            button.addEventListener("click", () => {
+              // console.log: outpus stuff in browser console
+              console.log("clicked add to cart");
+
+              // Reassign itemsInCartCount variable:
+              itemsInCartCount = itemsInCartCount + 1;
+
+              console.log("itemsInCartCount:", itemsInCartCount);
+
+              // Update text of HTML element with the "cart-count":
+              document.getElementById(
+                "cart-count"
+              ).innerText = itemsInCartCount;
+            });
+          }
+        );
+      }
+
+      function initializeCartWithList() {
+        const itemsInCart = []; // Array data type
+
+        Array.from(document.querySelectorAll(".add-to-cart")).forEach(
+          (button) => {
+            button.addEventListener("click", () => {
+              const product = button.dataset.product;
+              const price = Number(button.dataset.price);
+
+              console.log("clicked add to cart:", product, price);
+
+              // Add item to cart array (goes last in list):
+              itemsInCart.push(product);
+
+              console.log("itemsInCart:", itemsInCart);
+
+              // Get number of items in cart array:
+              const itemsInCartCount = itemsInCart.length;
+
+              console.log("itemsInCartCount:", itemsInCartCount);
+
+              document.getElementById(
+                "cart-count"
+              ).innerText = itemsInCartCount;
+            });
+          }
+        );
+      }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        console.log("DOM ready");
+
+        // Assignment: Update price using initializeCartWithCount first
+        // If you finish, update price using initializeCartWithList
+        //
+        // To toggle comments: Place your cursor on the line of code and press CMD + /
+        initializeCartWithCount();
+        // initializeCartWithList();
+      });
+    </script>
+  </body>
+</html>
