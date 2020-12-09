@@ -122,9 +122,15 @@
 
               console.log("itemsInCartCount:", itemsInCartCount);
 
+              cartTotal = cartTotal + price;
+
+              console.log("cartTotal: ", cartTotal);
+
               document.getElementById(
                 "cart-count"
               ).innerText = itemsInCartCount;
+
+              document.getElementById("cart-total").innerText = cartTotal;
             });
           }
         );
