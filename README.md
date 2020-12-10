@@ -10,7 +10,7 @@ Part 2 (optional): Once complete, try the same thing using the `initializeCartWi
 
 ## Kim's Method
 
-Initiate two variables: one for cart total defined outside of button-click functions, and another for fetching the selected fruit's price. Update the new grand total and then display in HTML.
+Initiate two variables: one for cart total defined outside of button-click functions, and another for fetching the selected fruit's price. Update the new cart total by adding the selected fruit price and then display in HTML.
 
 ## Getting the assignment
 
