@@ -44,97 +44,96 @@
       let  cartTotal = 0;
 
       function initializeCartWithCount() {
-        // Variable declaration format:
-        //   let/var/const nameOfVariable = valueOfVariable
-        //
-        // Notes:
-        // - let/var = Variable can be reassigned
-        //   Example:
-        //     let myBackpack = 'blue jansport';
-        //
-        //     myBackpack = 'red gucci';
-        // - const = Variable cannot be reassigned, but properties of it can be modifed
-        //   Example:
-        //     const myBackpack = { color: 'blue', brand: 'jansport' };
-        //
-        //     myBackpack.color = 'red'
-        //     myBackpack.brand = 'jansport'
-        // - Use camel-case when naming your variables: first letter of each word is capitalized
-        let itemsInCartCount = 0; // number data type
-        // let cartTotal = 0;
+      //   // Variable declaration format:
+      //   //   let/var/const nameOfVariable = valueOfVariable
+      //   //
+      //   // Notes:
+      //   // - let/var = Variable can be reassigned
+      //   //   Example:
+      //   //     let myBackpack = 'blue jansport';
+      //   //
+      //   //     myBackpack = 'red gucci';
+      //   // - const = Variable cannot be reassigned, but properties of it can be modifed
+      //   //   Example:
+      //   //     const myBackpack = { color: 'blue', brand: 'jansport' };
+      //   //
+      //   //     myBackpack.color = 'red'
+      //   //     myBackpack.brand = 'jansport'
+      //   // - Use camel-case when naming your variables: first letter of each word is capitalized
+      //   let itemsInCartCount = 0; // number data type
+      //   // let cartTotal = 0;
 
-        // Array is a list of values. Here, we're saying "turn the list of HTML button
-        // elements into a list of values we can work with in JavaScript:"
+      //   // Array is a list of values. Here, we're saying "turn the list of HTML button
+      //   // elements into a list of values we can work with in JavaScript:"
+      //   Array.from(document.querySelectorAll(".add-to-cart")).forEach(
+      //     // Named declaration format:
+      //     //  function nameOfFunction(nameOfInputs) { makeSomethingHappen }
+      //     // Note: Both of these are valid ways to write a function:
+      //     //   () => { makeSomethingHappen }
+      //     //   function() { makeSomethingHappen }
+      //     function makeButtonClickable(button) {
+      //       button.addEventListener("click", () => {
+      //         // console.log: outpus stuff in browser console
+      //         console.log("clicked add to cart");
+
+      //         // Reassign itemsInCartCount variable:
+      //         itemsInCartCount = itemsInCartCount + 1;
+
+      //         console.log("itemsInCartCount:", itemsInCartCount);
+
+      //         // Update text of HTML element with the "cart-count":
+      //         document.getElementById(
+      //           "cart-count"
+      //         ).innerText = itemsInCartCount;
+
+      //         //make a variable for the clicked item's price
+      //         const price = Number(button.dataset.price);
+
+      //         //Update cartTotal, I made the variable at the start of initializeCartWithCount
+      //         cartTotal = cartTotal + price;
+
+      //         console.log("new Total:",cartTotal);
+
+      //         document.getElementById(
+      //           "cart-total"
+      //         ).innerText = cartTotal;
+      //       });
+      //     }
+      //   );
+
+        const itemsInCart = []; // Array data type
+        // let  cartTotal = 0;
+
         Array.from(document.querySelectorAll(".add-to-cart")).forEach(
-          // Named declaration format:
-          //  function nameOfFunction(nameOfInputs) { makeSomethingHappen }
-          // Note: Both of these are valid ways to write a function:
-          //   () => { makeSomethingHappen }
-          //   function() { makeSomethingHappen }
-          function makeButtonClickable(button) {
+          (button) => {
             button.addEventListener("click", () => {
-              // console.log: outpus stuff in browser console
-              console.log("clicked add to cart");
+              const product = button.dataset.product;
+              const price = Number(button.dataset.price);
 
-              // Reassign itemsInCartCount variable:
-              itemsInCartCount = itemsInCartCount + 1;
+              console.log("clicked add to cart:", product, price);
+
+              // Add item to cart array (goes last in list):
+              itemsInCart.push(product);
+
+              console.log("itemsInCart:", itemsInCart);
+
+              // Get number of items in cart array:
+              const itemsInCartCount = itemsInCart.length;
 
               console.log("itemsInCartCount:", itemsInCartCount);
 
-              // Update text of HTML element with the "cart-count":
+              cartTotal = cartTotal + price;
+
+              console.log("cartTotal: ", cartTotal);
+
               document.getElementById(
                 "cart-count"
               ).innerText = itemsInCartCount;
 
-              //make a variable for the clicked item's price
-              const price = Number(button.dataset.price);
-
-              //Update cartTotal, I made the variable at the start of initializeCartWithCount
-              cartTotal = cartTotal + price;
-
-              console.log("new Total:",cartTotal);
-
-              document.getElementById(
-                "cart-total"
-              ).innerText = cartTotal;
+              document.getElementById("cart-total").innerText = cartTotal;
             });
           }
         );
-
-        // Below comes from initializeCartWithList
-        // const itemsInCart = []; // Array data type
-        // // let  cartTotal = 0;
-
-        // Array.from(document.querySelectorAll(".add-to-cart")).forEach(
-        //   (button) => {
-        //     button.addEventListener("click", () => {
-        //       const product = button.dataset.product;
-        //       const price = Number(button.dataset.price);
-
-        //       console.log("clicked add to cart:", product, price);
-
-        //       // Add item to cart array (goes last in list):
-        //       itemsInCart.push(product);
-
-        //       console.log("itemsInCart:", itemsInCart);
-
-        //       // Get number of items in cart array:
-        //       const itemsInCartCount = itemsInCart.length;
-
-        //       console.log("itemsInCartCount:", itemsInCartCount);
-
-        //       cartTotal = cartTotal + price;
-
-        //       console.log("cartTotal: ", cartTotal);
-
-        //       document.getElementById(
-        //         "cart-count"
-        //       ).innerText = itemsInCartCount;
-
-        //       document.getElementById("cart-total").innerText = cartTotal;
-        //     });
-        //   }
-        // );
 
       }
       
@@ -146,6 +145,24 @@
             button.addEventListener("click", () => {
               console.log("clicked add to cart");
 
+              // Add item to cart array (goes last in list):
+              //
+              // The data type of the item in this array is an Object.
+              // An object is indicated by surrounding curly braces (`{}`).
+              //
+              // The text inside of the curly braces are properties of the object,
+              // shown in key-value pairs; the key is the name of the property and 
+              // is to the left of the colon, and the value is right of the colon:
+              //   { key: value }
+              //
+              // This is similar to setting a variable, where the name is to the
+              // left of the equal sign, and the value is to the right.
+              // 
+              // To access a property
+              // You can access the properties of an object using a period (`.`).
+              // For example, to get the value of `product` from the `item` variable:
+              //   let item = { product: 'Apple' }
+              // you would do `item.product`.
               itemsInCart.push({
                 product: button.dataset.product,
                 price: Number(button.dataset.price)
@@ -158,12 +175,14 @@
 
               console.log("itemsInCartCount:", itemsInCartCount);
 
-              //try to update cartTotal here
               let cartTotal = 0;
               let i = 0;
 
+              // loop to cycle through itemsInCart array and add each price to cartTotal
               for (i; i < itemsInCartCount; i++) {
-                console.log("i:", i);
+                cartTotal += itemsInCart[i].price;
+                // console.log("fruit price:", i, itemsInCart[i].price);
+                // console.log("cartTotal: ", cartTotal);
               }
 
               console.log("cartTotal:", cartTotal);
@@ -175,6 +194,10 @@
               document.getElementById(
                 "cart-count"
               ).innerText = itemsInCartCount;
+
+              document.getElementById(
+                "cart-total"
+              ).innerText = cartTotal;
             });
           }
         );
