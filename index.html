@@ -41,6 +41,8 @@
     </main>
 
     <script>
+      let  cartTotal = 0;
+
       function initializeCartWithCount() {
         // Variable declaration format:
         //   let/var/const nameOfVariable = valueOfVariable
@@ -59,7 +61,7 @@
         //     myBackpack.brand = 'jansport'
         // - Use camel-case when naming your variables: first letter of each word is capitalized
         let itemsInCartCount = 0; // number data type
-        let cartTotal = 0;
+        // let cartTotal = 0;
 
         // Array is a list of values. Here, we're saying "turn the list of HTML button
         // elements into a list of values we can work with in JavaScript:"
@@ -98,22 +100,56 @@
             });
           }
         );
-      }
 
+        // Below comes from initializeCartWithList
+        // const itemsInCart = []; // Array data type
+        // // let  cartTotal = 0;
+
+        // Array.from(document.querySelectorAll(".add-to-cart")).forEach(
+        //   (button) => {
+        //     button.addEventListener("click", () => {
+        //       const product = button.dataset.product;
+        //       const price = Number(button.dataset.price);
+
+        //       console.log("clicked add to cart:", product, price);
+
+        //       // Add item to cart array (goes last in list):
+        //       itemsInCart.push(product);
+
+        //       console.log("itemsInCart:", itemsInCart);
+
+        //       // Get number of items in cart array:
+        //       const itemsInCartCount = itemsInCart.length;
+
+        //       console.log("itemsInCartCount:", itemsInCartCount);
+
+        //       cartTotal = cartTotal + price;
+
+        //       console.log("cartTotal: ", cartTotal);
+
+        //       document.getElementById(
+        //         "cart-count"
+        //       ).innerText = itemsInCartCount;
+
+        //       document.getElementById("cart-total").innerText = cartTotal;
+        //     });
+        //   }
+        // );
+
+      }
+      
       function initializeCartWithList() {
         const itemsInCart = []; // Array data type
-        let  cartTotal = 0;
 
         Array.from(document.querySelectorAll(".add-to-cart")).forEach(
           (button) => {
             button.addEventListener("click", () => {
-              const product = button.dataset.product;
-              const price = Number(button.dataset.price);
+              console.log("clicked add to cart");
 
-              console.log("clicked add to cart:", product, price);
-
-              // Add item to cart array (goes last in list):
-              itemsInCart.push(product);
+              itemsInCart.push({
+                product: button.dataset.product,
+                price: Number(button.dataset.price)
+              });
 
               console.log("itemsInCart:", itemsInCart);
 
@@ -122,19 +158,28 @@
 
               console.log("itemsInCartCount:", itemsInCartCount);
 
-              cartTotal = cartTotal + price;
+              //try to update cartTotal here
+              let cartTotal = 0;
+              let i = 0;
 
-              console.log("cartTotal: ", cartTotal);
+              for (i; i < itemsInCartCount; i++) {
+                console.log("i:", i);
+              }
+
+              console.log("cartTotal:", cartTotal);
+
+              itemsInCart.forEach((item) => {
+                console.log("item in itemsInCart:", item);
+              });
 
               document.getElementById(
                 "cart-count"
               ).innerText = itemsInCartCount;
-
-              document.getElementById("cart-total").innerText = cartTotal;
             });
           }
         );
       }
+
 
       document.addEventListener("DOMContentLoaded", (event) => {
         console.log("DOM ready");
@@ -149,3 +194,4 @@
     </script>
   </body>
 </html>
+
