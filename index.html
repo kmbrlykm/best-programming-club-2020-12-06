@@ -179,11 +179,16 @@
               let i = 0;
 
               // loop to cycle through itemsInCart array and add each price to cartTotal
-              for (i; i < itemsInCartCount; i++) {
-                cartTotal += itemsInCart[i].price;
-                // console.log("fruit price:", i, itemsInCart[i].price);
-                // console.log("cartTotal: ", cartTotal);
-              }
+              // for (i; i < itemsInCartCount; i++) {
+              //   cartTotal += itemsInCart[i].price;
+              //   // console.log("fruit price:", i, itemsInCart[i].price);
+              //   // console.log("cartTotal: ", cartTotal);
+              // }
+
+              itemsInCart.forEach((item) => {
+                cartTotal += item.price;
+                // console.log("price: ", item.price);
+              });
 
               console.log("cartTotal:", cartTotal);
 
